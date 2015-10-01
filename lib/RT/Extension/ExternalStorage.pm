@@ -85,7 +85,7 @@ on file contents; this provides de-duplication.
 The files are initially stored in the database when RT receives them;
 this guarantees that the user does not need to wait for the file to be
 transferred to disk or to the cloud, and makes it durable to transient
-failures of cloud connectivity.  The provided C<bin/extract-attachments>
+failures of cloud connectivity.  The provided C<sbin/extract-attachments>
 script, to be run regularly via cron, takes care of moving attachments
 out of the database at a later time.
 
@@ -125,18 +125,18 @@ are extracted.
 
 =item Extract existing attachments
 
-Run C<bin/extract-attachments>; this may take some time, depending on
+Run C<sbin/extract-attachments>; this may take some time, depending on
 the existing size of the database.  This task may be safely cancelled
 and re-run to resume.
 
 =item Schedule attachments extraction
 
-Schedule C<bin/extract-attachments> to run at regular intervals via
+Schedule C<sbin/extract-attachments> to run at regular intervals via
 cron.  For instance, the following F</etc/cron.d/rt> entry will run it
 daily, which may be good to concentrate network or disk usage to times
 when RT is less in use:
 
-    0 0 * * * root /opt/rt4/local/plugins/RT-Extension-ExternalStorage/bin/extract-attachments
+    0 0 * * * root /opt/rt4/local/plugins/RT-Extension-ExternalStorage/sbin/extract-attachments
 
 =back
 
